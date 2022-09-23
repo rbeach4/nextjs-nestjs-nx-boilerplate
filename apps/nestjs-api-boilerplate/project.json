@@ -1,0 +1,59 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/nestjs-api-boilerplate/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/nestjs-api-boilerplate",
+        "main": "apps/nestjs-api-boilerplate/src/main.ts",
+        "tsConfig": "apps/nestjs-api-boilerplate/tsconfig.app.json",
+        "assets": ["apps/nestjs-api-boilerplate/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/nestjs-api-boilerplate/src/environments/environment.ts",
+              "with": "apps/nestjs-api-boilerplate/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/js:node",
+      "options": {
+        "buildTarget": "nestjs-api-boilerplate:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "nestjs-api-boilerplate:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/nestjs-api-boilerplate/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/nestjs-api-boilerplate"],
+      "options": {
+        "jestConfig": "apps/nestjs-api-boilerplate/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
