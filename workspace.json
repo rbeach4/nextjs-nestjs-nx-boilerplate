@@ -1,0 +1,9 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "nestjs-api-boilerplate": "apps/nestjs-api-boilerplate",
+    "nextjs-frontend-boilerplate": "apps/nextjs-frontend-boilerplate",
+    "nextjs-frontend-boilerplate-e2e": "apps/nextjs-frontend-boilerplate-e2e"
+  }
+}
